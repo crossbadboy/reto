@@ -1,0 +1,145 @@
+/* === Fuente y layout general === */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2; /* gris claro */
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  color: #444; /* texto general */
+}
+
+/* === Sidebar (fondo blanco, limpio) === */
+.sidebar {
+  width: 220px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+  text-align: center;
+}
+
+.sidebar img.logo {
+  width: 120px;
+  margin-bottom: 30px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  font-weight: 400; /* fuente fina */
+  padding: 10px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar .active {
+  background-color: #FFCC00;
+  color: #003366;
+  font-weight: 500;
+}
+
+/* === Contenido principal === */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Header superior */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 18px;
+  color: #003366;
+  font-weight: 400;
+}
+
+.header img.header-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+}
+
+/* Contenedor CRUD */
+.router-container {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* === Tablas y formularios === */
+h2 {
+  color: #003366;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 6px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button {
+  background-color: #FFCC00;
+  color: #003366;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e6b800;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+th, td {
+  border: 1px solid #eaeaea;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #FFCC00;
+  color: #003366;
+  font-weight: 500;
+}
+
+td {
+  background-color: #fafafa;
+  color: #555;
+}

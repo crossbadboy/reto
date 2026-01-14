@@ -1,0 +1,22 @@
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <img src="assets/logo-pichincha.png" class="logo">
+    <nav>
+      <a routerLink="/clientes" routerLinkActive="active">Clientes</a>
+      <a routerLink="/cuentas" routerLinkActive="active">Cuentas</a>
+      <a routerLink="/movimientos" routerLinkActive="active">Movimientos</a>
+      <a routerLink="/reportes" routerLinkActive="active">Reportes</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido -->
+  <main class="content">
+    <div class="header">
+      <h1>Gestión de Clientes, Cuentas y Movimientos</h1>
+    </div>
+    <div class="router-container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

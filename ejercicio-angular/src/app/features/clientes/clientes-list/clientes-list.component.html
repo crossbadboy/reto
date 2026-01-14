@@ -1,0 +1,41 @@
+<div class="clientes-list-container">
+  <h2>Clientes</h2>
+
+  <button [routerLink]="['/clientes/nuevo']">Nuevo Cliente</button>
+
+  <input type="text" placeholder="Buscar cliente..." [(ngModel)]="searchTerm" />
+
+  <table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Género</th>
+      <th>Edad</th>
+      <th>Identificación</th>
+      <th>Dirección</th>
+      <th>Teléfono</th>
+      <th>Contraseña</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (c of filteredClientes; track c.clienteId) {
+      <tr>
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.genero === 'M' ? 'Masculino' : 'Femenino' }}</td>
+        <td>{{ c.edad }}</td>
+        <td>{{ c.identificacion }}</td>
+        <td>{{ c.direccion }}</td>
+        <td>{{ c.telefono }}</td>
+        <td>########</td>
+        <td>{{ c.estado ? 'Activo' : 'Inactivo' }}</td>
+        <td>
+          <button [routerLink]="['/clientes', c.clienteId, 'editar']">Editar</button>
+          <button (click)="deleteCliente(c.clienteId!)">Eliminar</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+  </table>
+</div>

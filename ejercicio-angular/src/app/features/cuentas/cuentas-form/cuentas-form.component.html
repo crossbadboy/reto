@@ -1,0 +1,26 @@
+<div class="cuentas-form-container">
+  <h2>{{ isEdit ? 'Editar Cuenta' : 'Nueva Cuenta' }}</h2>
+
+  <form (ngSubmit)="save()" #cuentaForm="ngForm">
+  <label>Número de Cuenta:</label>
+  <input type="text" [(ngModel)]="cuenta.numeroCuenta" name="numeroCuenta" required />
+
+  <label>Tipo de Cuenta:</label>
+  <select [(ngModel)]="cuenta.tipoCuenta" name="tipoCuenta" required>
+    <option [value]="'Ahorro'">Ahorro</option>
+    <option [value]="'Corriente'">Corriente</option>
+  </select>
+
+  <label>Saldo Inicial:</label>
+  <input type="number" [(ngModel)]="cuenta.saldoInicial" name="saldoInicial" required min="0" />
+
+  <label>Estado:</label>
+  <select [(ngModel)]="cuenta.estado" name="estado" required>
+    <option [value]="true">Activo</option>
+    <option [value]="false">Inactivo</option>
+  </select>
+
+    <button type="submit">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="router.navigate(['/cuentas'])">Cancelar</button>
+  </form>
+</div>

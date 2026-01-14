@@ -1,0 +1,51 @@
+<div class="clientes-form-container">
+  <h2>{{ isEdit ? 'Editar Cliente' : 'Nuevo Cliente' }}</h2>
+
+  <form (ngSubmit)="save()" #clienteForm="ngForm">
+    <div class="clientes-form-group">
+      <label>Nombre:</label>
+      <input type="text" [(ngModel)]="cliente.nombre" name="nombre" required />
+    </div>
+    <div class="clientes-form-group">
+      <label>Cliente ID:</label>
+      <input type="text" [(ngModel)]="cliente.clienteId" name="clienteId" required />
+    </div>
+    <div class="clientes-form-group">
+      <label>Género:</label>
+      <select [(ngModel)]="cliente.genero" name="genero" required>
+        <option [value]="'M'">Masculino</option>
+        <option [value]="'F'">Femenino</option>
+      </select>
+    </div>
+    <div class="clientes-form-group">
+      <label>Edad:</label>
+      <input type="number" [(ngModel)]="cliente.edad" name="edad" required min="0" />
+    </div>
+    <div class="clientes-form-group">
+      <label>Identificación:</label>
+      <input type="text" [(ngModel)]="cliente.identificacion" name="identificacion" required />
+    </div>
+    <div class="clientes-form-group">
+      <label>Dirección:</label>
+      <input type="text" [(ngModel)]="cliente.direccion" name="direccion" required />
+    </div>
+    <div class="clientes-form-group">
+      <label>Teléfono:</label>
+      <input type="text" [(ngModel)]="cliente.telefono" name="telefono" required />
+    </div>
+    <div class="clientes-form-group">
+      <label>Contraseña:</label>
+      <input type="text" [(ngModel)]="cliente.contrasena" name="contrasena" required />
+    </div>
+    <div class="clientes-form-group">
+      <label>Estado:</label>
+      <select [(ngModel)]="cliente.estado" name="estado" required>
+        <option [value]="true">Activo</option>
+        <option [value]="false">Inactivo</option>
+      </select>
+    </div>
+    <div style="flex-basis: 100%; height: 0;"></div>
+    <button type="submit">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="router.navigate(['/clientes'])">Cancelar</button>
+  </form>
+</div>

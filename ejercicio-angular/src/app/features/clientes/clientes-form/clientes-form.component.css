@@ -1,0 +1,31 @@
+
+
+/* Contenedor más ancho */
+.clientes-form-container {
+	max-width: 900px;
+}
+
+/* Mostrar campos de dos en dos */
+.clientes-form-container form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px 32px;
+}
+
+.clientes-form-group {
+	flex: 1 1 340px;
+	min-width: 320px;
+	max-width: 48%;
+	display: flex;
+	flex-direction: column;
+}
+
+.clientes-form-group label {
+	margin-top: 12px;
+	margin-bottom: 2px;
+}
+
+.clientes-form-group input,
+.clientes-form-group select {
+	margin-bottom: 8px;
+}

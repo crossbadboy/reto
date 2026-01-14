@@ -1,0 +1,413 @@
+{
+	"info": {
+		"_postman_id": "4cecab06-bff3-4705-910c-faaf1c25997b",
+		"name": "WS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6500752"
+	},
+	"item": [
+		{
+			"name": "persona-cliente",
+			"item": [
+				{
+					"name": "Get clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cliente by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/clientes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post clientes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Andres  Castro\",\r\n  \"identificacion\": \"1727366088\",\r\n  \"genero\": \"Masculino\",\r\n  \"edad\": 30,\r\n  \"direccion\": \"Calle Falsa 123\",\r\n  \"telefono\": \"0987654321\",\r\n  \"clienteId\": \"C1001\",\r\n  \"contrasena\": \"contrasena123\",\r\n  \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put clientes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Giovanny Cadena\",\r\n  \"identificacion\": \"1727366088\",\r\n  \"genero\": \"Masculino\",\r\n  \"edad\": 30,\r\n  \"direccion\": \"Calle Falsa 123\",\r\n  \"telefono\": \"0987654321\",\r\n  \"clienteId\": \"C1001\",\r\n  \"contrasena\": \"contrasena123\",\r\n  \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/clientes/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete clientes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/clientes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cuenta-movimiento",
+			"item": [
+				{
+					"name": "Get cuentas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movimientos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cuenta by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cuentas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cuentas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movimientos by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post cuentas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuenta\": \"1234567890123456\",\r\n  \"tipoCuenta\": \"Ahorro\",\r\n  \"saldoInicial\": 5000.75,\r\n  \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post movimientos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tipoMovimiento\": \"retiro\",\r\n  \"valor\": 100,\r\n  \"cuentaId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put cuentas",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuenta\": \"1234567890123456\",\r\n  \"tipoCuenta\": \"Ahorro\",\r\n  \"saldoInicial\": 5029.75,\r\n  \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cuentas/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cuentas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put movimientos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tipoMovimiento\": \"retirouu\",\r\n  \"valor\": 30.75,\r\n  \"cuentaId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete cuentas",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cuentas/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cuentas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete movimientos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/movimientos/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movimientos",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reportes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reportes?fechaInicio=2025-02-01&fechaFin=2025-02-16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reportes"
+							],
+							"query": [
+								{
+									"key": "fechaInicio",
+									"value": "2025-02-01"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2025-02-16"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

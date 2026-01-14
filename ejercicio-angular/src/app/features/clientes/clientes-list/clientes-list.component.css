@@ -1,0 +1,22 @@
+/* Espaciado general para la lista de clientes */
+.clientes-list-container {
+	margin: 32px 24px;
+	padding: 16px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.clientes-list-container h2 {
+	margin-bottom: 24px;
+}
+
+.clientes-list-container table {
+	width: 100%;
+	margin-bottom: 16px;
+}
+
+.clientes-list-container th,
+.clientes-list-container td {
+	padding: 8px 12px;
+}

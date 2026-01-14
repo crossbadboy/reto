@@ -1,0 +1,70 @@
+<div class="movimientos-form-container">
+  <h2>{{ isEdit ? 'Editar Movimiento' : 'Nuevo Movimiento' }}</h2>
+
+  <form #movimientoForm="ngForm" (ngSubmit)="save()">
+
+    <div>
+      <label for="tipoMovimiento">Tipo de Movimiento</label>
+      <select
+        id="tipoMovimiento"
+        name="tipoMovimiento"
+        [(ngModel)]="movimiento.tipoMovimiento"
+        required
+        #tipoMovimiento="ngModel"
+      >
+        <option value="">Seleccione...</option>
+        <option value="DEPOSITO">Depósito</option>
+        <option value="RETIRO">Retiro</option>
+      </select>
+      @if (tipoMovimiento.invalid && tipoMovimiento.touched) {
+        <div class="error">
+          Tipo de movimiento es requerido.
+        </div>
+      }
+    </div>
+
+    <div>
+      <label for="valor">Valor</label>
+      <input
+        id="valor"
+        name="valor"
+        type="number"
+        [(ngModel)]="movimiento.valor"
+        min="0.01"
+        step="0.01"
+        required
+        #valor="ngModel"
+      />
+      @if (valor.invalid && valor.touched) {
+        <div class="error">
+          Valor es requerido y debe ser mayor a cero.
+        </div>
+      }
+    </div>
+
+    <div>
+      <label for="cuenta">Cuenta</label>
+      <select
+        id="cuenta"
+        name="cuenta"
+        [(ngModel)]="movimiento.numeroCuenta"
+        required
+        #cuenta="ngModel"
+      >
+        <option value="">Seleccione una cuenta...</option>
+        @for (cuenta of cuentas; track cuenta.numeroCuenta) {
+          <option [value]="cuenta.numeroCuenta">{{ cuenta.numeroCuenta }}</option>
+        }
+      </select>
+      @if (cuenta.invalid && cuenta.touched) {
+        <div class="error">
+          La cuenta es requerida.
+        </div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="movimientoForm.invalid">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="cancelar()">Cancelar</button>
+
+  </form>
+</div>

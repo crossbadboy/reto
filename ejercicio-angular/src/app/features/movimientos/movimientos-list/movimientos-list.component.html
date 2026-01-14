@@ -1,0 +1,39 @@
+<div class="movimientos-list-container">
+  <h2>Movimientos</h2>
+
+  <input
+    type="text"
+    placeholder="Buscar movimiento..."
+    [(ngModel)]="searchTerm"
+  />
+
+  <button routerLink="/movimientos/nuevo">Nuevo Movimiento</button>
+
+  <table>
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Fecha</th>
+      <th>Numero de cuenta</th>
+      <th>Valor</th>
+      <th>Saldo</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (m of filteredMovimientos; track m.id) {
+      <tr>
+        <td>{{ m.tipoMovimiento }}</td>
+        <td>{{ m.fecha }}</td>
+        <td align="center">{{ m.numeroCuenta }}</td>
+        <td>{{ m.valor }}</td>
+        <td>{{ m.saldo }}</td>
+        <td>
+          <!-- <button [routerLink]="['/movimientos', m.id, 'editar']">Editar</button> -->
+          <button (click)="eliminarMovimiento(m.id!)">Eliminar</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+</div>

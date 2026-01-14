@@ -1,0 +1,37 @@
+<h2>Reportes</h2>
+
+<div class="filtros">
+  <input type="date" [(ngModel)]="fechaInicio" />
+  <input type="date" [(ngModel)]="fechaFin" />
+  <button (click)="generarReporte()">Generar</button>
+</div>
+
+@if (reportes.length) {
+  <button (click)="descargarPDF()">Descargar PDF</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Número Cuenta</th>
+        <th>Tipo</th>
+        <th>Saldo inicial</th>
+        <th>Estado</th>
+        <th>Movimiento</th>
+        <th>Saldo Disponible</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of reportes; track r.numeroCuenta) {
+        <tr>
+          <td>{{ r.fecha }}</td>
+          <td>{{ r.numeroCuenta }}</td>
+          <td>{{ r.tipo }}</td>
+          <td>{{ r.saldoInicial }}</td>
+          <td>{{ r.estado ? 'Activo' : 'Inactivo' }}</td>
+          <td>{{ r.movimiento }}</td>
+          <td>{{ r.saldoDisponible | currency }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

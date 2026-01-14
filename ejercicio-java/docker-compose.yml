@@ -1,0 +1,21 @@
+services:
+  cuenta-movimientos:
+    build: cuenta-movimientos
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:h2:mem:testdb
+      DB_USER_NAME: sa
+      DB_PASSWORD:
+      SPRING_RABBITMQ_HOST: host.docker.internal
+  cliente-persona:
+    build: cliente-persona
+    mem_limit: 512m
+    ports:
+      - "8081:8081"
+    environment:
+      DB_URL: jdbc:h2:mem:testdb
+      DB_USER_NAME: sa
+      DB_PASSWORD:
+      SPRING_RABBITMQ_HOST: host.docker.internal

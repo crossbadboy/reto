@@ -1,0 +1,97 @@
+{
+  "info": {
+    "_postman_id": "b1e1e1e1-1234-5678-9101-abcdefabcdef",
+    "name": "Cliente Persona API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Obtener todos los clientes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/clientes",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "clientes"]
+        }
+      }
+    },
+    {
+      "name": "Obtener cliente por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/clientes/{{id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "clientes", "{{id}}"]
+        }
+      }
+    },
+    {
+      "name": "Crear cliente",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Juan Perez\",\n  \"identificacion\": \"1234567890\",\n  \"genero\": \"M\",\n  \"edad\": 30,\n  \"direccion\": \"Calle 123\",\n  \"telefono\": \"0999999999\",\n  \"contrasena\": \"secreta\",\n  \"estado\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/clientes",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "clientes"]
+        }
+      }
+    },
+    {
+      "name": "Actualizar cliente",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Juan Perez Modificado\",\n  \"identificacion\": \"1234567890\",\n  \"genero\": \"M\",\n  \"edad\": 31,\n  \"direccion\": \"Calle 456\",\n  \"telefono\": \"0999999998\",\n  \"contrasena\": \"nueva\",\n  \"estado\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/clientes/{{id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "clientes", "{{id}}"]
+        }
+      }
+    },
+    {
+      "name": "Eliminar cliente",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/clientes/{{id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "clientes", "{{id}}"]
+        }
+      }
+    }
+  ]
+}

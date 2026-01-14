@@ -1,0 +1,22 @@
+/* Espaciado general para la lista de movimientos */
+.movimientos-list-container {
+	margin: 32px 24px;
+	padding: 16px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.movimientos-list-container h2 {
+	margin-bottom: 24px;
+}
+
+.movimientos-list-container table {
+	width: 100%;
+	margin-bottom: 16px;
+}
+
+.movimientos-list-container th,
+.movimientos-list-container td {
+	padding: 8px 12px;
+}
