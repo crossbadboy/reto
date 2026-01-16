@@ -1,9 +1,9 @@
 package cuenta_movimientos.com.config;
 
-import cuenta_movimientos.com.model.Cuenta;
-import cuenta_movimientos.com.model.Movimiento;
-import cuenta_movimientos.com.repository.interfaces.CuentaRepository;
-import cuenta_movimientos.com.repository.interfaces.MovimientoRepository;
+import cuenta_movimientos.com.domain.model.Cuenta;
+import cuenta_movimientos.com.domain.model.Movimiento;
+import cuenta_movimientos.com.domain.repository.CuentaRepository;
+import cuenta_movimientos.com.domain.repository.MovimientoRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
