@@ -4,7 +4,7 @@ import cuenta_movimientos.com.adapter.in.dto.response.ReporteResponseDTO;
 import cuenta_movimientos.com.domain.model.Movimiento;
 import cuenta_movimientos.com.domain.repository.CuentaRepository;
 import cuenta_movimientos.com.domain.repository.MovimientoRepository;
-import cuenta_movimientos.com.domain.port.ReporteService;
+import cuenta_movimientos.com.domain.port.ReportePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -16,12 +16,12 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class ReporteServiceImp implements ReporteService {
+public class ReportePortImp implements ReportePort {
     private final CuentaRepository cuentaRepository;
     private final MovimientoRepository movimientoRepository;
 
     @Autowired
-    public ReporteServiceImp(CuentaRepository cuentaRepository, MovimientoRepository movimientoRepository) {
+    public ReportePortImp(CuentaRepository cuentaRepository, MovimientoRepository movimientoRepository) {
         this.cuentaRepository = cuentaRepository;
         this.movimientoRepository = movimientoRepository;
     }

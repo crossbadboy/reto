@@ -2,25 +2,41 @@
   <h2>{{ isEdit ? 'Editar Cuenta' : 'Nueva Cuenta' }}</h2>
 
   <form (ngSubmit)="save()" #cuentaForm="ngForm">
-  <label>Número de Cuenta:</label>
-  <input type="text" [(ngModel)]="cuenta.numeroCuenta" name="numeroCuenta" required />
-
-  <label>Tipo de Cuenta:</label>
-  <select [(ngModel)]="cuenta.tipoCuenta" name="tipoCuenta" required>
-    <option [value]="'Ahorro'">Ahorro</option>
-    <option [value]="'Corriente'">Corriente</option>
-  </select>
-
-  <label>Saldo Inicial:</label>
-  <input type="number" [(ngModel)]="cuenta.saldoInicial" name="saldoInicial" required min="0" />
-
-  <label>Estado:</label>
-  <select [(ngModel)]="cuenta.estado" name="estado" required>
-    <option [value]="true">Activo</option>
-    <option [value]="false">Inactivo</option>
-  </select>
-
-    <button type="submit">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+    <div>
+      <label>Número de Cuenta:</label>
+      <input type="text" [(ngModel)]="cuenta.numeroCuenta" name="numeroCuenta" required #numeroCuenta="ngModel" />
+      @if (numeroCuenta.invalid && numeroCuenta.touched) {
+        <div class="error">Número de cuenta es requerido.</div>
+      }
+    </div>
+    <div>
+      <label>Tipo de Cuenta:</label>
+      <select [(ngModel)]="cuenta.tipoCuenta" name="tipoCuenta" required #tipoCuenta="ngModel">
+        <option [value]="'Ahorro'">Ahorro</option>
+        <option [value]="'Corriente'">Corriente</option>
+      </select>
+      @if (tipoCuenta.invalid && tipoCuenta.touched) {
+        <div class="error">Tipo de cuenta es requerido.</div>
+      }
+    </div>
+    <div>
+      <label>Saldo Inicial:</label>
+      <input type="number" [(ngModel)]="cuenta.saldoInicial" name="saldoInicial" required min="0" #saldoInicial="ngModel" />
+      @if (saldoInicial.invalid && saldoInicial.touched) {
+        <div class="error">Saldo inicial es requerido y debe ser mayor o igual a cero.</div>
+      }
+    </div>
+    <div>
+      <label>Estado:</label>
+      <select [(ngModel)]="cuenta.estado" name="estado" required #estado="ngModel">
+        <option [value]="true">Activo</option>
+        <option [value]="false">Inactivo</option>
+      </select>
+      @if (estado.invalid && estado.touched) {
+        <div class="error">El estado es requerido.</div>
+      }
+    </div>
+    <button type="submit" [disabled]="cuentaForm.invalid">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
     <button type="button" (click)="router.navigate(['/cuentas'])">Cancelar</button>
   </form>
 </div>

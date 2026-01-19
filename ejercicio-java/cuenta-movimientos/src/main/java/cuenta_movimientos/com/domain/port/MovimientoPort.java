@@ -5,7 +5,7 @@ import cuenta_movimientos.com.adapter.in.dto.response.MovimientoResponseDTO;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public interface MovimientoService {
+public interface MovimientoPort {
     Mono<MovimientoResponseDTO> createMovimiento(MovimientoDTO movimientoDTO);
     Mono<MovimientoResponseDTO> updateMovimiento(String id, MovimientoDTO movimientoDTO);
     Flux<MovimientoResponseDTO> getAllMovimientos();

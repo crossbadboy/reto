@@ -2,7 +2,7 @@ package cuenta_movimientos.com.service.impl;
 
 import cuenta_movimientos.com.adapter.in.dto.request.CuentaDTO;
 import cuenta_movimientos.com.adapter.in.dto.response.CuentaResponseDTO;
-import cuenta_movimientos.com.application.ports.CuentaServiceImp;
+import cuenta_movimientos.com.application.ports.CuentaPortImp;
 import cuenta_movimientos.com.domain.exception.NegocioException;
 import cuenta_movimientos.com.domain.model.Cuenta;
 import cuenta_movimientos.com.domain.repository.CuentaRepository;
@@ -22,12 +22,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class CuentaServiceImpTest {
+class CuentaPortImpTest {
     @Mock
     private CuentaRepository cuentaRepository;
 
     @InjectMocks
-    private CuentaServiceImp cuentaService;
+    private CuentaPortImp cuentaService;
 
     private Cuenta cuenta;
 

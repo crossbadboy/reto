@@ -4,7 +4,7 @@ import cliente_persona.com.adapter.in.web.dto.ClienteDTO;
 import cliente_persona.com.adapter.in.web.dto.ClienteResponseDTO;
 import cliente_persona.com.domain.exception.NegocioException;
 import cliente_persona.com.domain.model.Cliente;
-import cliente_persona.com.domain.port.ClienteService;
+import cliente_persona.com.domain.port.ClientePort;
 import cliente_persona.com.domain.repository.ClienteRepository;
 import cliente_persona.com.domain.repository.PersonaRepository;
 import cliente_persona.com.adapter.out.messaging.ClienteProducer;
@@ -14,12 +14,12 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-public class ClienteServiceImp implements ClienteService {
+public class ClientePortImp implements ClientePort {
     private final ClienteRepository clienteRepository;
     private final PersonaRepository personaRepository;
     private final ClienteProducer clienteProducer;
 
-    public ClienteServiceImp(ClienteRepository clienteRepository, PersonaRepository personaRepository, ClienteProducer clienteProducer) {
+    public ClientePortImp(ClienteRepository clienteRepository, PersonaRepository personaRepository, ClienteProducer clienteProducer) {
         this.clienteRepository = clienteRepository;
         this.personaRepository = personaRepository;
         this.clienteProducer = clienteProducer;

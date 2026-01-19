@@ -4,48 +4,78 @@
   <form (ngSubmit)="save()" #clienteForm="ngForm">
     <div class="clientes-form-group">
       <label>Nombre:</label>
-      <input type="text" [(ngModel)]="cliente.nombre" name="nombre" required />
+      <input type="text" [(ngModel)]="cliente.nombre" name="nombre" required #nombre="ngModel" />
+      @if (nombre.invalid && nombre.touched) {
+        <div class="error">El nombre es requerido.</div>
+      }
     </div>
     <div class="clientes-form-group">
       <label>Cliente ID:</label>
-      <input type="text" [(ngModel)]="cliente.clienteId" name="clienteId" required />
+      <input type="text" [(ngModel)]="cliente.clienteId" name="clienteId" required #clienteId="ngModel" />
+      @if (clienteId.invalid && clienteId.touched) {
+        <div class="error">El ID de cliente es requerido.</div>
+      }
     </div>
     <div class="clientes-form-group">
       <label>Género:</label>
-      <select [(ngModel)]="cliente.genero" name="genero" required>
+      <select [(ngModel)]="cliente.genero" name="genero" required #genero="ngModel">
         <option [value]="'M'">Masculino</option>
         <option [value]="'F'">Femenino</option>
       </select>
+      @if (genero.invalid && genero.touched) {
+        <div class="error">El género es requerido.</div>
+      }
     </div>
     <div class="clientes-form-group">
       <label>Edad:</label>
-      <input type="number" [(ngModel)]="cliente.edad" name="edad" required min="0" />
+      <input type="number" [(ngModel)]="cliente.edad" name="edad" required min="0" #edad="ngModel" />
+      @if (edad.invalid && edad.touched) {
+        <div class="error">La edad es requerida y debe ser mayor o igual a cero.</div>
+      }
     </div>
     <div class="clientes-form-group">
       <label>Identificación:</label>
-      <input type="text" [(ngModel)]="cliente.identificacion" name="identificacion" required />
+      <input type="text" [(ngModel)]="cliente.identificacion" name="identificacion" required minlength="10" maxlength="10" #identificacion="ngModel" />
+      @if ((identificacion.errors?.['required'] && identificacion.touched)) {
+        <div class="error">La identificación es requerida.</div>
+      }
+      @if ((identificacion.errors?.['minlength'] || identificacion.errors?.['maxlength']) && identificacion.touched) {
+        <div class="error">La cédula debe tener exactamente 10 caracteres.</div>
+      }
     </div>
     <div class="clientes-form-group">
       <label>Dirección:</label>
-      <input type="text" [(ngModel)]="cliente.direccion" name="direccion" required />
+      <input type="text" [(ngModel)]="cliente.direccion" name="direccion" required #direccion="ngModel" />
+      @if (direccion.invalid && direccion.touched) {
+        <div class="error">La dirección es requerida.</div>
+      }
     </div>
     <div class="clientes-form-group">
       <label>Teléfono:</label>
-      <input type="text" [(ngModel)]="cliente.telefono" name="telefono" required />
+      <input type="text" [(ngModel)]="cliente.telefono" name="telefono" required #telefono="ngModel" />
+      @if (telefono.invalid && telefono.touched) {
+        <div class="error">El teléfono es requerido.</div>
+      }
     </div>
     <div class="clientes-form-group">
       <label>Contraseña:</label>
-      <input type="text" [(ngModel)]="cliente.contrasena" name="contrasena" required />
+      <input type="text" [(ngModel)]="cliente.contrasena" name="contrasena" required #contrasena="ngModel" />
+      @if (contrasena.invalid && contrasena.touched) {
+        <div class="error">La contraseña es requerida.</div>
+      }
     </div>
     <div class="clientes-form-group">
       <label>Estado:</label>
-      <select [(ngModel)]="cliente.estado" name="estado" required>
+      <select [(ngModel)]="cliente.estado" name="estado" required #estado="ngModel">
         <option [value]="true">Activo</option>
         <option [value]="false">Inactivo</option>
       </select>
+      @if (estado.invalid && estado.touched) {
+        <div class="error">El estado es requerido.</div>
+      }
     </div>
     <div style="flex-basis: 100%; height: 0;"></div>
-    <button type="submit">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
+    <button type="submit" [disabled]="clienteForm.invalid">{{ isEdit ? 'Actualizar' : 'Crear' }}</button>
     <button type="button" (click)="router.navigate(['/clientes'])">Cancelar</button>
   </form>
 </div>

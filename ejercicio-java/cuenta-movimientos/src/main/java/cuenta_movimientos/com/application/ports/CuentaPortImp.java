@@ -5,7 +5,7 @@ import cuenta_movimientos.com.adapter.in.dto.response.CuentaResponseDTO;
 import cuenta_movimientos.com.domain.exception.NegocioException;
 import cuenta_movimientos.com.domain.model.Cuenta;
 import cuenta_movimientos.com.domain.repository.CuentaRepository;
-import cuenta_movimientos.com.domain.port.CuentaService;
+import cuenta_movimientos.com.domain.port.CuentaPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,11 +13,11 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-public class CuentaServiceImp implements CuentaService {
+public class CuentaPortImp implements CuentaPort {
     private final CuentaRepository cuentaRepository;
 
     @Autowired
-    public CuentaServiceImp(CuentaRepository cuentaRepository) {
+    public CuentaPortImp(CuentaRepository cuentaRepository) {
         this.cuentaRepository = cuentaRepository;
     }
 
@@ -39,11 +39,7 @@ public class CuentaServiceImp implements CuentaService {
                     if (optionalCuenta.isEmpty()) {
                         return Mono.error(new NegocioException("Cuenta con ID " + id + " no encontrada para actualizar."));
                     }
-                    Cuenta cuenta = optionalCuenta.get();
-                    cuenta.setNumeroCuenta(cuentaDTO.getNumeroCuenta());
-                    cuenta.setTipoCuenta(cuentaDTO.getTipoCuenta());
-                    cuenta.setSaldoInicial(cuentaDTO.getSaldoInicial());
-                    cuenta.setEstado(cuentaDTO.getEstado());
+                    Cuenta cuenta = updateCuentaFromDto(optionalCuenta.get(), cuentaDTO);
                     Cuenta updated = cuentaRepository.save(cuenta);
                     return Mono.just(mapToResponseDTO(updated));
                 });
@@ -94,5 +90,13 @@ public class CuentaServiceImp implements CuentaService {
                 .saldoInicial(cuenta.getSaldoInicial())
                 .estado(cuenta.getEstado())
                 .build();
+    }
+
+    private Cuenta updateCuentaFromDto(Cuenta cuenta, CuentaDTO cuentaDTO) {
+        cuenta.setNumeroCuenta(cuentaDTO.getNumeroCuenta());
+        cuenta.setTipoCuenta(cuentaDTO.getTipoCuenta());
+        cuenta.setSaldoInicial(cuentaDTO.getSaldoInicial());
+        cuenta.setEstado(cuentaDTO.getEstado());
+        return cuenta;
     }
 }

@@ -5,7 +5,7 @@ import cliente_persona.com.adapter.in.web.dto.ClienteResponseDTO;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public interface ClienteService {
+public interface ClientePort {
     Mono<ClienteResponseDTO> saveCliente(ClienteDTO clienteDTO);
     Flux<ClienteResponseDTO> getAllClientes();
     Mono<ClienteResponseDTO> getClienteById(String id);

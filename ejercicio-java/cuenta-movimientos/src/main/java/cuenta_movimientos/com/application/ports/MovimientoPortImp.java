@@ -7,7 +7,7 @@ import cuenta_movimientos.com.domain.model.Cuenta;
 import cuenta_movimientos.com.domain.model.Movimiento;
 import cuenta_movimientos.com.domain.repository.CuentaRepository;
 import cuenta_movimientos.com.domain.repository.MovimientoRepository;
-import cuenta_movimientos.com.domain.port.MovimientoService;
+import cuenta_movimientos.com.domain.port.MovimientoPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,13 +19,13 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class MovimientoServiceImp implements MovimientoService {
+public class MovimientoPortImp implements MovimientoPort {
 
     private final CuentaRepository cuentaRepository;
     private final MovimientoRepository movimientoRepository;
 
     @Autowired
-    public MovimientoServiceImp(CuentaRepository cuentaRepository, MovimientoRepository movimientoRepository) {
+    public MovimientoPortImp(CuentaRepository cuentaRepository, MovimientoRepository movimientoRepository) {
         this.cuentaRepository = cuentaRepository;
         this.movimientoRepository = movimientoRepository;
     }

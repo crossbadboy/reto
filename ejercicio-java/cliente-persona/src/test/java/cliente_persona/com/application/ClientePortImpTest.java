@@ -21,13 +21,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class ClienteServiceImpTest {
+class ClientePortImpTest {
     @Mock
     private ClienteRepository clienteRepository;
     @Mock
     private PersonaRepository personaRepository;
     @InjectMocks
-    private ClienteServiceImp clienteServiceImp;
+    private ClientePortImp clienteServiceImp;
     @Mock
     private ClienteProducer clienteProducer;
     private Cliente cliente;

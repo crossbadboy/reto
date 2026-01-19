@@ -5,7 +5,7 @@ import cuenta_movimientos.com.adapter.in.dto.response.CuentaResponseDTO;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public interface CuentaService {
+public interface CuentaPort {
     Mono<CuentaResponseDTO> saveCuenta(CuentaDTO cuentaDTO);
     Mono<CuentaResponseDTO> updateCuenta(String id, CuentaDTO cuentaDTO);
     Flux<CuentaResponseDTO> getAllCuentas();
