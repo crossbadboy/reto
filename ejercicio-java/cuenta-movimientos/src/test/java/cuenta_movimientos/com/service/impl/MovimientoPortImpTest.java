@@ -40,7 +40,7 @@ class MovimientoPortImpTest {
         cuenta = Cuenta.builder().id(1L).numeroCuenta("1234567890").tipoCuenta("AHORRO")
                 .saldoInicial(1000.00).estado(Boolean.TRUE).build();
         movimiento = Movimiento.builder().movimientoId(1L).tipoMovimiento("DEPOSITO").valor(100.0)
-                .saldo(1100.0).cuenta(cuenta).build();
+                .saldo(1100.0).cuenta(cuenta).fecha(new java.util.Date()).build();
     }
 
     @Test
@@ -49,7 +49,8 @@ class MovimientoPortImpTest {
         dto.setTipoMovimiento("DEPOSITO");
         dto.setValor(100.0);
         dto.setCuentaId(1L);
-        when(cuentaRepository.findById(1L)).thenReturn(Optional.of(cuenta));
+        dto.setNumeroCuenta("1234567890");
+        when(cuentaRepository.findByNumeroCuenta("1234567890")).thenReturn(Optional.of(cuenta));
         when(movimientoRepository.save(any(Movimiento.class))).thenReturn(movimiento);
         Mono<MovimientoResponseDTO> result = movimientoService.createMovimiento(dto);
         StepVerifier.create(result)
@@ -104,4 +105,3 @@ class MovimientoPortImpTest {
                 .verify();
     }
 }
-
