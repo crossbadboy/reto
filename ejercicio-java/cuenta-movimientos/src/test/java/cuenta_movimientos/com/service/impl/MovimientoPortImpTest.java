@@ -8,10 +8,12 @@ import cuenta_movimientos.com.domain.model.Cuenta;
 import cuenta_movimientos.com.domain.model.Movimiento;
 import cuenta_movimientos.com.domain.repository.CuentaRepository;
 import cuenta_movimientos.com.domain.repository.MovimientoRepository;
+import cuenta_movimientos.com.mapper.MovimientoMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -29,6 +31,8 @@ class MovimientoPortImpTest {
     private MovimientoRepository movimientoRepository;
     @Mock
     private CuentaRepository cuentaRepository;
+    @Mock
+    private MovimientoMapper movimientoMapper;
     @InjectMocks
     private MovimientoPortImp movimientoService;
     private Movimiento movimiento;
@@ -41,6 +45,16 @@ class MovimientoPortImpTest {
                 .saldoInicial(1000.00).estado(Boolean.TRUE).build();
         movimiento = Movimiento.builder().movimientoId(1L).tipoMovimiento("DEPOSITO").valor(100.0)
                 .saldo(1100.0).cuenta(cuenta).fecha(new java.util.Date()).build();
+        MovimientoResponseDTO movimientoResponseDTO = MovimientoResponseDTO.builder()
+                .id(1L)
+                .fecha(movimiento.getFecha().toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate())
+                .tipoMovimiento("DEPOSITO")
+                .valor(100.0)
+                .saldo(1100.0)
+                .cuentaId(1L)
+                .numeroCuenta("1234567890")
+                .build();
+        Mockito.when(movimientoMapper.toDto(any(Movimiento.class))).thenReturn(movimientoResponseDTO);
     }
 
     @Test

@@ -6,6 +6,7 @@ import cuenta_movimientos.com.domain.exception.NegocioException;
 import cuenta_movimientos.com.domain.model.Cuenta;
 import cuenta_movimientos.com.domain.repository.CuentaRepository;
 import cuenta_movimientos.com.domain.port.CuentaPort;
+import cuenta_movimientos.com.mapper.CuentaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,19 +16,21 @@ import reactor.core.publisher.Mono;
 @Service
 public class CuentaPortImp implements CuentaPort {
     private final CuentaRepository cuentaRepository;
+    private final CuentaMapper cuentaMapper;
 
     @Autowired
-    public CuentaPortImp(CuentaRepository cuentaRepository) {
+    public CuentaPortImp(CuentaRepository cuentaRepository, CuentaMapper cuentaMapper) {
         this.cuentaRepository = cuentaRepository;
+        this.cuentaMapper = cuentaMapper;
     }
 
     @Override
     @Transactional
     public Mono<CuentaResponseDTO> saveCuenta(CuentaDTO cuentaDTO) {
         return Mono.fromCallable(() -> {
-            Cuenta cuenta = mapToEntity(cuentaDTO);
+            Cuenta cuenta = cuentaMapper.toEntity(cuentaDTO);
             Cuenta saved = cuentaRepository.save(cuenta);
-            return mapToResponseDTO(saved);
+            return cuentaMapper.toDto(saved);
         });
     }
 
@@ -40,22 +43,21 @@ public class CuentaPortImp implements CuentaPort {
                         return Mono.error(new NegocioException("Cuenta con ID " + id + " no encontrada para actualizar."));
                     }
                     Cuenta cuenta = updateCuentaFromDto(optionalCuenta.get(), cuentaDTO);
-                    Cuenta updated = cuentaRepository.save(cuenta);
-                    return Mono.just(mapToResponseDTO(updated));
+                    return Mono.just(cuentaMapper.toDto(cuentaRepository.save(cuenta)));
                 });
     }
 
     @Override
     public Flux<CuentaResponseDTO> getAllCuentas() {
         return Flux.defer(() -> Flux.fromIterable(cuentaRepository.findAll())
-                .map(this::mapToResponseDTO));
+                .map(cuentaMapper::toDto));
     }
 
     @Override
     public Mono<CuentaResponseDTO> getCuentaById(String id) {
         return Mono.fromCallable(() -> cuentaRepository.findById(Long.valueOf(id)))
                 .flatMap(optionalCuenta -> optionalCuenta
-                        .map(cuenta -> Mono.just(mapToResponseDTO(cuenta)))
+                        .map(cuenta -> Mono.just(cuentaMapper.toDto(cuenta)))
                         .orElseGet(() -> Mono.error(new NegocioException("Cuenta con ID " + id + " no encontrada."))));
     }
 
@@ -71,25 +73,6 @@ public class CuentaPortImp implements CuentaPort {
                         return Mono.error(new NegocioException("Cuenta con ID " + id + " no encontrada para eliminar."));
                     }
                 });
-    }
-
-    private Cuenta mapToEntity(CuentaDTO cuentaDTO) {
-        return Cuenta.builder()
-                .numeroCuenta(cuentaDTO.getNumeroCuenta())
-                .tipoCuenta(cuentaDTO.getTipoCuenta())
-                .saldoInicial(cuentaDTO.getSaldoInicial())
-                .estado(cuentaDTO.getEstado())
-                .build();
-    }
-
-    private CuentaResponseDTO mapToResponseDTO(Cuenta cuenta) {
-        return CuentaResponseDTO.builder()
-                .id(cuenta.getId())
-                .numeroCuenta(cuenta.getNumeroCuenta())
-                .tipoCuenta(cuenta.getTipoCuenta())
-                .saldoInicial(cuenta.getSaldoInicial())
-                .estado(cuenta.getEstado())
-                .build();
     }
 
     private Cuenta updateCuentaFromDto(Cuenta cuenta, CuentaDTO cuentaDTO) {

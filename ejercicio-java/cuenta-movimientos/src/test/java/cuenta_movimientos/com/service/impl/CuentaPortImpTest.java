@@ -6,10 +6,12 @@ import cuenta_movimientos.com.application.ports.CuentaPortImp;
 import cuenta_movimientos.com.domain.exception.NegocioException;
 import cuenta_movimientos.com.domain.model.Cuenta;
 import cuenta_movimientos.com.domain.repository.CuentaRepository;
+import cuenta_movimientos.com.mapper.CuentaMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -26,6 +28,9 @@ class CuentaPortImpTest {
     @Mock
     private CuentaRepository cuentaRepository;
 
+    @Mock
+    private CuentaMapper cuentaMapper;
+
     @InjectMocks
     private CuentaPortImp cuentaService;
 
@@ -36,6 +41,15 @@ class CuentaPortImpTest {
         MockitoAnnotations.initMocks(this);
         cuenta = Cuenta.builder().id(1L).numeroCuenta("1234567890").tipoCuenta("AHORRO")
                 .saldoInicial(1000.00).estado(Boolean.TRUE).build();
+        CuentaResponseDTO cuentaResponseDTO = CuentaResponseDTO.builder()
+                .id(1L)
+                .numeroCuenta("1234567890")
+                .tipoCuenta("AHORRO")
+                .saldoInicial(1000.00)
+                .estado(true)
+                .build();
+        Mockito.when(cuentaMapper.toDto(any(Cuenta.class))).thenReturn(cuentaResponseDTO);
+        Mockito.when(cuentaMapper.toEntity(any(CuentaDTO.class))).thenReturn(cuenta);
     }
 
     @Test
@@ -62,10 +76,10 @@ class CuentaPortImpTest {
     @Test
     void updateCuenta() {
         CuentaDTO cuentaDto = new CuentaDTO();
-        cuentaDto.setNumeroCuenta("1111222233");
-        cuentaDto.setTipoCuenta("CORRIENTE");
-        cuentaDto.setSaldoInicial(1500.00);
-        cuentaDto.setEstado(false);
+        cuentaDto.setNumeroCuenta("1234567890");
+        cuentaDto.setTipoCuenta("AHORRO");
+        cuentaDto.setSaldoInicial(1000.00);
+        cuentaDto.setEstado(true);
 
         when(cuentaRepository.findById(1L)).thenReturn(Optional.of(cuenta));
         when(cuentaRepository.save(any(Cuenta.class))).thenReturn(cuenta);
@@ -74,7 +88,7 @@ class CuentaPortImpTest {
         StepVerifier.create(result)
                 .assertNext(updated -> {
                     assertNotNull(updated);
-                    assertEquals("1111222233", updated.getNumeroCuenta());
+                    assertEquals("1234567890", updated.getNumeroCuenta());
                 })
                 .verifyComplete();
         verify(cuentaRepository).findById(1L);
