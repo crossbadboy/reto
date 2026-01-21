@@ -32,6 +32,7 @@ dependencies {
     implementation 'org.junit.jupiter:junit-jupiter-engine'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation 'org.assertj:assertj-core'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
@@ -41,6 +42,7 @@ dependencies {
     testImplementation 'com.h2database:h2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'io.projectreactor:reactor-test'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 }
 
 tasks.named('test') {

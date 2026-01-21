@@ -7,6 +7,7 @@ import cliente_persona.com.adapter.in.web.dto.ClienteResponseDTO;
 import cliente_persona.com.domain.exception.NegocioException;
 import cliente_persona.com.adapter.out.messaging.ClienteProducer;
 import cliente_persona.com.domain.repository.PersonaRepository;
+import cliente_persona.com.adapter.mapper.ClienteMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -30,7 +31,10 @@ class ClientePortImpTest {
     private ClientePortImp clienteServiceImp;
     @Mock
     private ClienteProducer clienteProducer;
+    @Mock
+    private ClienteMapper clienteMapper;
     private Cliente cliente;
+    private ClienteResponseDTO clienteResponseDTO;
 
     @BeforeEach
     void setUp() {
@@ -47,6 +51,19 @@ class ClientePortImpTest {
             .contrasena("123")
             .estado(true)
             .build();
+        clienteResponseDTO = ClienteResponseDTO.builder()
+            .nombre(cliente.getNombre())
+            .genero(cliente.getGenero())
+            .edad(cliente.getEdad())
+            .identificacion(cliente.getIdentificacion())
+            .direccion(cliente.getDireccion())
+            .telefono(cliente.getTelefono())
+            .clienteId(cliente.getClienteId())
+            .contrasena(cliente.getContrasena())
+            .estado(cliente.getEstado())
+            .build();
+        when(clienteMapper.toCliente(any(ClienteDTO.class))).thenReturn(cliente);
+        when(clienteMapper.toClienteResponseDTO(any(Cliente.class))).thenReturn(clienteResponseDTO);
     }
 
     @Test
@@ -119,7 +136,7 @@ class ClientePortImpTest {
     void updateCliente() {
         ClienteDTO clienteDTO = ClienteDTO.builder()
             .nombre("Andrea Robles")
-            .identificacion("1727366088")
+            .identificacion("1234567890")
             .genero("F")
             .edad(50)
             .direccion("Puembo calle juan leon mera")
@@ -134,7 +151,7 @@ class ClientePortImpTest {
         when(clienteRepository.save(any(Cliente.class))).thenAnswer(invocation -> invocation.getArgument(0));
         ClienteResponseDTO clienteResponse = clienteServiceImp.updateCliente("1", clienteDTO).block();
         assertNotNull(clienteResponse);
-        assertEquals("1727366088", clienteResponse.getIdentificacion());
+        assertEquals("1234567890", clienteResponse.getIdentificacion());
         verify(clienteRepository, times(1)).findByClienteId(any(String.class));
         verify(clienteRepository, times(1)).save(any(Cliente.class));
     }
